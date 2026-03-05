@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Upper Crust | Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #0b0b0b;
+  --card: #151515;
+  --text: #eaeaea;
+  --muted: #9a9a9a;
+  --accent: #c49a6c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hero {
+  padding: 80px 10%;
+  text-align: center;
+  background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  letter-spacing: 6px;
+}
+
+.hero span {
+  color: var(--accent);
+}
+
+.hero p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.section {
+  padding: 60px 10%;
+}
+
+.section h2 {
+  font-size: 1.9rem;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.section h2::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px;
+}
+
+.item {
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+}
+
+.item img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  filter: brightness(0.88) contrast(1.1);
+}
+
+.item .info {
+  padding: 18px;
+}
+
+.item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.item p {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* Fun Fact */
+.fact {
+  margin: 60px 10%;
+  padding: 35px;
+  background: radial-gradient(circle at top, #1f1f1f, #101010);
+  border-left: 5px solid var(--accent);
+  border-radius: 14px;
+}
+
+.fact h3 {
+  margin-bottom: 10px;
+}
+
+.fact p {
+  color: #cfcfcf;
+  font-size: 0.95rem;
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  color: #777;
+  font-size: 0.8rem;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <h1>UPPER <span>CRUST</span></h1>
+  <p>Minimal plates. Smoky depth. Elevated comfort.</p>
+</section>
+
+<!-- STARTERS -->
+<section class="section">
+<h2>Starters</h2>
+<div class="items">
+  <div class="item">
+    <img src="https://sinfullyspicy.com/wp-content/uploads/2023/08/1200-by-1200-images.jpg">
+    <div class="info"><h3>Smoked Paneer Cubes</h3><p>Tandoor-charred, spice glaze</p>
+<div class="price">₹290</div></div>
+  </div>
+  <div class="item">
+    <img src="https://d21klxpge3tttg.cloudfront.net/wp-content/uploads/2013/07/B13_FireEaterChickenWings-628x373.jpg">
+    <div class="info"><h3>Fire Chicken Wings</h3><p>Slow-smoked, pepper heat</p>
+<div class="price">₹380</div></div>
+  </div>
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947">
+    <div class="info"><h3>Bruschetta Trio</h3><p>Tomato, basil, olive oil</p>
+<div class="price">₹260</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.marionskitchen.com/wp-content/uploads/2021/08/20201119_Garlic-Butter-Prawns-12-scaled-e1628864642909-1200x1500.jpg">
+    <div class="info"><h3>Garlic Butter Prawns</h3><p>Herb-infused butter</p>
+<div class="price">₹460</div></div>
+  </div>
+  <div class="item">
+    <img src="https://rakskitchen.net/wp-content/uploads/2017/01/perfect-potato-croquettes-500x500.jpg">
+    <div class="info"><h3>Veg Croquettes</h3><p>Crispy outside, creamy core</p>
+<div class="price">₹240</div></div>
+  </div>
+  <div class="item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4IaqjzawPmtE2GCa6Ja-TwUDsH6KTXjyc1A&s">
+    <div class="info"><h3>Roasted Tomato Soup</h3><p>Smoky, slow-simmered</p>
+<div class="price">₹210</div></div>
+  </div>
+</div>
+</section>
+
+<!-- MAIN COURSE -->
+<section class="section">
+<h2>Main Course</h2>
+<div class="items">
+  <div class="item">
+    <img src="https://www.eatingwell.com/thmb/nQviM3hR7pI24laro8I4oQSBltc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/7944502-edf690cb649741cfb36e12b4581e4e9d.jpg">
+    <div class="info"><h3>Grilled Herb Chicken</h3><p>Flame-finished breast</p>
+<div class="price">₹550</div></div>
+  </div>
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9">
+    <div class="info"><h3>Red sauce pasta</h3><p>Classic creamy gravy</p><div class="price">₹520</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.allrecipes.com/thmb/9d8yV77PRL3wbRwcpAIxtZPdi5Q=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/85389-gourmet-mushroom-risotto-DDMFS-4x3-a8a80a8deb064c6a8f15452b808a0258.jpg">
+    <div class="info"><h3>Mushroom Risotto</h3><p>Arborio, parmesan</p>
+<div class="price">₹480</div></div>
+  </div>
+  <div class="item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd_wE8TS_4HGqVnakSKW84F1GEBQq-6JRRew&s">
+    <div class="info"><h3>Pasta Aglio Olio</h3><p>Garlic, chili, olive oil</p>
+<div class="price">₹420</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.healthyseasonalrecipes.com/wp-content/uploads/2022/03/easy-vegetable-lasagna-primavera-sq-037.jpg">
+    <div class="info"><h3>Vegetable Lasagna</h3><p>Baked layers, rich sauce</p>
+<div class="price">₹490</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.healthyseasonalrecipes.com/wp-content/uploads/2024/06/GrilledLegofLambSteak-20.jpg">
+    <div class="info"><h3>Lamb Steak</h3><p>Smoked jus, tender cut</p>
+ <div class="price">₹650</div></div>
+  </div>
+</div>
+</section>
+
+<!-- DESSERTS -->
+<section class="section">
+<h2>Desserts</h2>
+<div class="items">
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
+    <div class="info"><h3>Chocolate Lava Cake</h3><p>Warm molten center</p>
+<div class="price">₹320</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.tasteofhome.com/wp-content/uploads/2025/01/Tiramisu-Cheesecake-Dessert_EXPS_TOHD24_40878_EricKleinberg_9.jpg">
+    <div class="info"><h3>Tiramisu</h3><p>Coffee-soaked layers</p>
+<div class="price">₹340</div></div>
+  </div>
+  <div class="item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO_XCM3Na1fAgJSmFKIQnjOyvPGNF58BFrng&s">
+    <div class="info"><h3>Classic Cheesecake</h3><p>Creamy vanilla base</p>
+<div class="price">₹300</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.cafechococraze.com/wp-content/uploads/2016/06/sizzling-brownie.jpg">
+    <div class="info"><h3>Brownie & Ice Cream</h3><p>Hot and cold contrast</p>
+<div class="price">₹350</div></div>
+  </div>
+  <div class="item">
+    <img src="https://www.recipetineats.com/tachyon/2016/09/Creme-Brulee_8-SQ.jpg">
+    <div class="info"><h3>Crème Brûlée</h3><p>Caramelized top</p>
+<div class="price">₹330</div></div>
+  </div>
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1541783245831-57d6fb0926d3">
+    <div class="info"><h3>Chocolate Mousse</h3><p>Silky dark chocolate</p>
+ <div class="price">₹310</div></div>
+  </div>
+</div>
+</section>
+
+<!-- BEVERAGES -->
+<section class="section">
+<h2>Beverages</h2>
+<div class="items">
+    <div class="item">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+    <div class="info"><h3>Cold Brew Coffee</h3><p>Bold, smooth finish</p>
+<div class="price">₹180</div></div>
+  </div>
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62">
+    <div class="info"><h3>Classic Lemonade</h3><p>Fresh citrus blend</p>
+<div class="price">₹150</div></div>
+  </div>
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e">
+    <div class="info"><h3>Mint Mojito</h3><p>Cooling, refreshing</p>
+ <div class="price">₹220</div></div>
+  </div>
+  <div class="item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh9dnq5p7rewEeShaY03GQC2LJUi92R370FA&s">
+    <div class="info"><h3>Hot Chocolate</h3><p>Rich cocoa warmth</p>
+<div class="price">₹200</div>
+</div>
+  </div>
+  <div class="item">
+    <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e">
+    <div class="info"><h3>Iced Tea</h3><p>Light & crisp</p></div>
+<div class="price">₹170</div>
+  </div>
+</div>
+</section>
+
+<!-- FUN FACT -->
+<section class="fact">
+  <h3>Food Fun Fact</h3>
+  <p>Smoked foods trigger umami receptors more intensely, which is why smoky flavours feel richer and more satisfying—even with minimalist ingredients.</p>
+</section>
+
+<footer>
+© Upper Crust — Crafted with fire & restraint
+</footer>
+
+</body>
+</html>

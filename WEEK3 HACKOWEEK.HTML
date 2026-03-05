@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>College Event Registration — Mood Indigo Style</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --purple: #4c2889;
+  --violet: #957ad1;
+  --cobalt: #0052d4;
+  --sky: #6fb1fc;
+  --accent: #ff9a00;
+  --bg: #0d0c16;
+  --card-bg: rgba(255,255,255,0.08);
+  --text: #e0e0e0;
+  --border: rgba(255,255,255,0.2);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  padding: 30px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(148,87,235,0.25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(72,61,139,0.35), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(25,25,112,0.6), transparent 55%),
+    linear-gradient(180deg, #020316 0%, #050818 45%, #0b0f3a 100%);
+  overflow-x: hidden;
+}
+<div class="stars"></div>
+<div class="nebula"></div>
+.nebula {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(138,43,226,0.22), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(72,61,139,0.25), transparent 55%);
+  filter: blur(70px);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  background: rgba(13,12,22,0.9);
+  border-radius: 16px;
+  padding: 40px;
+  backdrop-filter: blur(8px);
+}
+
+h1 {
+  font-size: 2.8rem;
+  text-align: center;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.section-desc {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.field-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  outline: none;
+  transition: border 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(255,154,0,0.4);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* EVENT GRID */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* CARD */
+.card {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+.card h4 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  font-size: 13px;
+  margin-bottom: 12px;
+  color: #ccc;
+}
+
+.card label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: auto;
+}
+
+/* CONSENT */
+.checkbox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.checkbox input {
+  accent-color: var(--accent);
+}
+
+/* BUTTON */
+.submit-btn {
+  width: 100%;
+  padding: 17px;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #111;
+}/* STARFIELD */
+.stars,
+.stars::before,
+.stars::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+}
+
+.stars {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 30% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 40%, #fff, transparent),
+    radial-gradient(1px 1px at 90% 60%, #fff, transparent);
+  background-size: 300px 300px;
+  animation: starMove 180s linear infinite;
+  opacity: 0.45;
+}
+
+.stars::before {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 50% 70%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 80% 20%, #fff, transparent);
+  background-size: 600px 600px;
+  animation: starMove 260s linear infinite;
+  opacity: 0.25;
+}
+
+.stars::after {
+  background-image:
+    radial-gradient(2px 2px at 40% 50%, #fff, transparent),
+    radial-gradient(2px 2px at 60% 10%, #fff, transparent);
+  background-size: 900px 900px;
+  animation: starMove 420s linear infinite;
+  opacity: 0.15;
+}
+
+@keyframes starMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1200px); }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1>College Event Registration</h1>
+  <p class="subtitle">Powered by Mood Indigo — India’s largest college cultural fest</p>
+
+  <!-- PLAYER INFO -->
+  <section>
+    <h2>Participant Info</h2>
+    <p class="section-desc">Required details for fest registration</p>
+
+    <div class="field-group">
+      <label>PRN Number</label><input type="text" required>
+    </div>
+    <div class="field-group">
+      <label>Full Name</label><input type="text" required>
+    </div>
+    <div class="field-group">
+      <label>Email ID</label><input type="email" required>
+    </div>
+    <div class="field-group">
+      <label>Phone</label><input type="tel">
+    </div>
+  </section>
+
+  <!-- COMPETITIONS -->
+  <section>
+    <h2>Competitions — Sign Up</h2>
+    <p class="section-desc">
+      Choose all competitions you want to participate in. Multiple selections allowed — winners get exposure, prizes & LYP opportunities! :contentReference[oaicite:3]{index=3}
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h4>Aagaaz (Street Play)</h4>
+        <p>Dynamic street theatre competition that celebrates community expression and narrative performance.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>Mantra (Music)</h4>
+        <p>Melodic music battle — from band ensembles to solo maestros. Judges reward creativity.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>ThirdBell (Stageplay)</h4>
+        <p>A classic theatrical competition focused on acting, direction & dramatic impact.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>Vogue (Fashion & Lifestyle)</h4>
+        <p>Fashion showcase with runway, style challenges & creative expression.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>Beat The Street (Dance)</h4>
+        <p>Energetic dance competition with freestyle, hip-hop & choreography rounds.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>Sanskriti (Cultural Performance)</h4>
+        <p>Traditional meets contemporary — cultural dance, music & fusion acts.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>Desi Beats (Folk Music/Dance)</h4>
+        <p>A celebration of regional rhythms, folk instruments & cultural heritage.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+      <div class="card">
+        <h4>Trashion (Art & Sustainability)</h4>
+        <p>Wearable art made from trash — creative, sustainable & bold.</p>
+        <label><input type="checkbox"> Participate</label>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section>
+    <div class="checkbox"><input type="checkbox" required><label>All details are correct</label></div>
+    <div class="checkbox"><input type="checkbox" required><label>I consent to media use</label></div>
+
+    <button class="submit-btn">Submit Registration</button>
+  </section>
+</div>
+
+</body>
+</html>

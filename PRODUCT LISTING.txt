@@ -1,0 +1,158 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- ================= META ================= -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop — Product Listing</title>
+
+    
+
+    <!-- ================= STYLES ================= -->
+    <style>
+        :root{--bg:#f6f7fb;--card:#ffffff;--text:#0f172a;--muted:#64748b;--border:#e5e7eb;--brand:#2563eb;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;--radius:16px;--shadow:0 10px 25px rgba(2,6,23,.08);}*{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+        .container{max-width:1100px;margin:auto;padding:20px}
+        .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+        .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+        .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#7c3aed);display:grid;place-items:center;color:white}
+        .search input{padding:10px 14px;border-radius:12px;border:1px solid var(--border);min-width:250px}
+        .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--border);cursor:pointer;background:white}
+        .btn.primary{background:var(--brand);color:white;border-color:var(--brand)}
+        .badge{font-size:12px;background:#eef2ff;padding:4px 8px;border-radius:999px;margin-left:6px}
+        .filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+        .chip{padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:white;cursor:pointer}
+        .chip.active{border-color:var(--brand);color:var(--brand)}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+        .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column}
+        
+        
+        .content{padding:14px;display:flex;flex-direction:column;gap:8px}
+        .price{font-weight:700}
+        .stock{font-size:13px}
+        .stock.ok{color:var(--success)}.stock.low{color:var(--warning)}.stock.out{color:var(--danger)}
+        .qty{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+        .qty button{border:none;padding:6px 10px;background:white;cursor:pointer}
+        .qty input{width:40px;border:none;text-align:center}
+        .footer{display:flex;gap:8px;margin-top:8px}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="brand"><div class="logo">S</div><div>Sample Shop</div></div>
+        <div><input id="search" placeholder="Search products..." /> <button class="btn" id="cartBtn">Cart <span class="badge" id="cartCount">0</span></button></div>
+    </div>
+    <div class="filters" id="filters">
+        <button class="chip active" data-cat="all">All</button>
+        <button class="chip" data-cat="snacks">Snacks</button>
+        <button class="chip" data-cat="beverages">Beverages</button>
+        <button class="chip" data-cat="home">Home</button>
+        <button class="chip" data-cat="personal">Personal Care</button>
+    </div>
+    <div class="grid" id="grid"></div>
+</div>
+
+<script>
+const PRODUCTS=[
+
+// ================= SNACKS (8) =================
+{id:'S1',name:'Masala Peanuts',cat:'snacks',price:120,stock:18},
+{id:'S2',name:'Aloo Chips',cat:'snacks',price:40,stock:22},
+{id:'S3',name:'Khakhra Methi',cat:'snacks',price:95,stock:15},
+{id:'S4',name:'Chocolate Cookies',cat:'snacks',price:150,stock:8},
+{id:'S5',name:'Salted Cashews',cat:'snacks',price:320,stock:10},
+{id:'S6',name:'Popcorn Butter',cat:'snacks',price:60,stock:25},
+{id:'S7',name:'Nachos Classic',cat:'snacks',price:110,stock:14},
+{id:'S8',name:'Energy Bar',cat:'snacks',price:45,stock:30},
+
+// ================= BEVERAGES (8) =================
+{id:'B1',name:'Jeera Soda',cat:'beverages',price:35,stock:6},
+{id:'B2',name:'Cold Coffee',cat:'beverages',price:80,stock:9},
+{id:'B3',name:'Orange Juice',cat:'beverages',price:60,stock:12},
+{id:'B4',name:'Mineral Water 1L',cat:'beverages',price:20,stock:30},
+{id:'B5',name:'Green Tea Bottle',cat:'beverages',price:90,stock:11},
+{id:'B6',name:'Mango Drink',cat:'beverages',price:50,stock:17},
+{id:'B7',name:'Chocolate Milk',cat:'beverages',price:45,stock:13},
+{id:'B8',name:'Sparkling Water',cat:'beverages',price:55,stock:19},
+
+// ================= HOME (8) =================
+{id:'H1',name:'Steel Bottle 1L',cat:'home',price:399,stock:12},
+{id:'H2',name:'Lunch Box',cat:'home',price:250,stock:10},
+{id:'H3',name:'Cleaning Cloth Set',cat:'home',price:149,stock:25},
+{id:'H4',name:'LED Night Lamp',cat:'home',price:299,stock:7},
+{id:'H5',name:'Wall Clock',cat:'home',price:450,stock:9},
+{id:'H6',name:'Storage Basket',cat:'home',price:180,stock:16},
+{id:'H7',name:'Table Organizer',cat:'home',price:220,stock:14},
+{id:'H8',name:'Kitchen Knife Set',cat:'home',price:799,stock:5},
+
+// ================= PERSONAL CARE (8) =================
+{id:'P1',name:'Herbal Face Wash',cat:'personal',price:249,stock:3},
+{id:'P2',name:'Lip Balm',cat:'personal',price:120,stock:20},
+{id:'P3',name:'Hand Sanitizer',cat:'personal',price:70,stock:18},
+{id:'P4',name:'Body Lotion',cat:'personal',price:320,stock:11},
+{id:'P5',name:'Shampoo 300ml',cat:'personal',price:280,stock:9},
+{id:'P6',name:'Conditioner 300ml',cat:'personal',price:290,stock:8},
+{id:'P7',name:'Face Serum',cat:'personal',price:499,stock:6},
+{id:'P8',name:'Bath Soap Pack',cat:'personal',price:140,stock:21}
+];
+
+let state={cat:'all',search:''};
+function stockClass(n){if(n===0)return'out';if(n<5)return'low';return'ok'}
+
+function render(){
+    const grid=document.getElementById('grid'); grid.innerHTML='';
+    PRODUCTS.filter(p=>state.cat==='all'||p.cat===state.cat)
+    .filter(p=>p.name.toLowerCase().includes(state.search))
+    .forEach(p=>{
+        const card=document.createElement('div'); card.className='card'; card.dataset.id=p.id;
+        card.innerHTML=`
+            
+            <div class="content">
+                <div><strong>${p.name}</strong></div>
+                <div class="price">₹${p.price}</div>
+                <div class="stock ${stockClass(p.stock)}">Stock: ${p.stock}</div>
+                <div class="footer">
+                    <div class="qty"><button class="qty-dec" type="button">−</button><input class="qty-input" type="number" value="1" min="1" /><button class="qty-inc" type="button">+</button></div>
+                    <button class="btn primary add-btn" type="button">Add</button>
+                </div>
+            </div>`;
+        grid.appendChild(card);
+    });
+}
+
+document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value.toLowerCase();render()});
+
+document.getElementById('filters').addEventListener('click',e=>{
+    if(!e.target.dataset.cat)return; state.cat=e.target.dataset.cat;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    e.target.classList.add('active'); render();
+});
+
+let cart={};
+function updateBadge(){
+  const count=Object.values(cart).reduce((a,b)=>a+b,0);
+  const el=document.getElementById('cartCount'); if(el) el.textContent=count;
+}
+
+document.getElementById('grid').addEventListener('click',(e)=>{
+  const card=e.target.closest('.card'); if(!card) return;
+  const input=card.querySelector('.qty-input');
+  if(e.target.classList.contains('qty-inc')){ input.value=Number(input.value||1)+1; }
+  if(e.target.classList.contains('qty-dec')){ input.value=Math.max(1,Number(input.value||1)-1); }
+  if(e.target.classList.contains('add-btn')){
+    const id=card.dataset.id;
+    const qty=Math.max(1,Number(input.value||1));
+    cart[id]=(cart[id]||0)+qty;
+    updateBadge();
+    e.target.textContent='Added';
+    setTimeout(()=>e.target.textContent='Add',800);
+  }
+});
+
+updateBadge();
+render();
+</script>
+</body>
+</html>
