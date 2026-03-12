@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart Quiz Portal</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#eef3ff;
+}
+
+/* NAVBAR */
+
+nav{
+background:#1a2a6c;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav h1{
+font-size:24px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:20px;
+cursor:pointer;
+}
+
+/* HERO SECTION */
+
+.hero{
+height:80vh;
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h2{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.hero button{
+margin-top:20px;
+padding:12px 25px;
+background:#ff9800;
+border:none;
+border-radius:5px;
+color:white;
+font-size:16px;
+}
+
+/* FEATURES */
+
+.features{
+padding:60px;
+display:flex;
+justify-content:space-around;
+}
+
+.card{
+background:white;
+padding:25px;
+width:280px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card img{
+width:80px;
+margin-bottom:15px;
+}
+
+.card h3{
+color:#1a2a6c;
+margin-bottom:10px;
+}
+
+/* QUIZ SHOWCASE */
+
+.quiz-section{
+background:#dbe4ff;
+padding:50px;
+text-align:center;
+}
+
+.quiz-box{
+background:white;
+width:600px;
+margin:auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,.1);
+text-align:left;
+}
+
+.quiz-box h3{
+color:#1a2a6c;
+margin-bottom:15px;
+}
+
+.option{
+margin:8px 0;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:40px;
+background:#1a2a6c;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<h1>Smart Quiz Portal</h1>
+
+<ul>
+<li>Home</li>
+<li>Teacher</li>
+<li>Student</li>
+<li>About</li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h2>Interactive Online Quiz System</h2>
+
+<p>Designed for Teachers and Students</p>
+
+<button>Start Learning</button>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features">
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+
+<h3>Teacher Panel</h3>
+
+<p>Create quizzes and generate quiz codes for students.</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/201/201818.png">
+
+<h3>Student Access</h3>
+
+<p>Students join quizzes using the code shared by teachers.</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/942/942799.png">
+
+<h3>Instant Evaluation</h3>
+
+<p>Simple and structured MCQ based testing system.</p>
+
+</div>
+
+</section>
+
+<!-- QUIZ SHOWCASE -->
+
+<section class="quiz-section">
+
+<h2>Sample Quiz (Class 10)</h2>
+
+<br>
+
+<div class="quiz-box">
+
+<h3>1. What is the chemical formula of water?</h3>
+
+<div class="option">
+<input type="radio"> H2O
+</div>
+
+<div class="option">
+<input type="radio"> CO2
+</div>
+
+<div class="option">
+<input type="radio"> NaCl
+</div>
+
+<div class="option">
+<input type="radio"> O2
+</div>
+
+<hr><br>
+
+<h3>2. Who discovered gravity?</h3>
+
+<div class="option">
+<input type="radio"> Einstein
+</div>
+
+<div class="option">
+<input type="radio"> Newton
+</div>
+
+<div class="option">
+<input type="radio"> Tesla
+</div>
+
+<div class="option">
+<input type="radio"> Galileo
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>Smart Quiz Portal | Designed for Education</p>
+
+</footer>
+
+</body>
+</html>
