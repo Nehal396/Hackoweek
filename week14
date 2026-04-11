@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printer Queue Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🖨️</div>
+                <h1>PrintQueue X</h1>
+            </div>
+            
+            <nav class="menu">
+                <button class="menu-btn active" id="menu-add" onclick="showSection('add-section', this)">
+                    <span class="icon">➕</span> Add Print Job
+                </button>
+                <button class="menu-btn" id="menu-process" onclick="processJob()">
+                    <span class="icon">⚙️</span> Process Print Job
+                </button>
+                <button class="menu-btn" id="menu-view" onclick="showSection('view-section', this); updateVisualQueue()">
+                    <span class="icon">📋</span> View Queue
+                </button>
+                <button class="menu-btn exit-btn" onclick="exitSimulation()">
+                    <span class="icon">🚪</span> Exit / Clear
+                </button>
+            </nav>
+
+            <div class="status-panel">
+                <h3>System Status</h3>
+                <p id="queue-length">Pending Jobs: 0</p>
+                <div class="led-indicator" id="system-led"></div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar">
+                <h2>Printer Job Queue Simulation (FIFO)</h2>
+            </header>
+
+            <div class="content-display">
+                <!-- Notifications -->
+                <div id="notification-area"></div>
+
+                <!-- Add Section -->
+                <section id="add-section" class="active-section">
+                    <div class="glass-card">
+                        <h3>Enqeue New Print Job</h3>
+                        <form id="add-job-form" onsubmit="addJob(event)">
+                            <div class="input-group">
+                                <label for="job-id">Job ID</label>
+                                <input type="text" id="job-id" placeholder="e.g. DOC-001" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="file-name">File Name</label>
+                                <input type="text" id="file-name" placeholder="e.g. report.pdf" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="page-count">Number of Pages</label>
+                                <input type="number" id="page-count" placeholder="e.g. 5" min="1" required>
+                            </div>
+                            <button type="submit" class="primary-btn">Add to Queue</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- View Queue Section -->
+                <section id="view-section" style="display: none;">
+                    <div class="glass-card queue-display" id="queue-container">
+                        <h3>Current Print Queue</h3>
+                        <div class="queue-visual" id="queue-visual">
+                            <!-- Queue items will be injected here -->
+                            <div class="empty-state">Queue is empty</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Processing Station Visual -->
+                <section id="process-station" class="process-station">
+                    <div class="printer">
+                        <div class="printer-slot"></div>
+                        <div class="printer-body">
+                            <span class="printer-label">Main Printer</span>
+                        </div>
+                        <div class="printer-tray">
+                            <div class="paper-out" id="printed-paper" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div class="process-log">
+                        <h3>Processing Log</h3>
+                        <div id="log-output" class="terminal-font">
+                            System initialized. Ready to process jobs.
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
