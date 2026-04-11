@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser History Navigator Simulator</title>
+    <meta name="description" content="A demonstration of stack data structure for browser history navigation.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <h1><span class="icon">🌐</span> Browser History Stack Simulator</h1>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Left Panel: Menu -->
+            <aside class="menu-panel glass-panel">
+                <h2>Control Menu</h2>
+                <nav class="menu-driven">
+                    <button id="btn-visit" class="menu-btn"><span>1.</span> Visit New Page</button>
+                    <button id="btn-back" class="menu-btn"><span>2.</span> Go Back</button>
+                    <button id="btn-forward" class="menu-btn"><span>3.</span> Go Forward</button>
+                    <button id="btn-current" class="menu-btn"><span>4.</span> Current Page</button>
+                    <button id="btn-exit" class="menu-btn exit"><span>5.</span> Exit Simulator</button>
+                </nav>
+                
+                <div class="input-group" id="url-input-group" style="display: none;">
+                    <input type="text" id="url-input" placeholder="Enter URL (e.g. google.com)" autocomplete="off">
+                    <button id="btn-submit-url">Go</button>
+                </div>
+            </aside>
+
+            <!-- Center Panel: Visualization -->
+            <main class="visualizer glass-panel">
+                <div class="display-header">
+                    <h2>Stack Visualizer</h2>
+                </div>
+                
+                <div class="stacks-container">
+                    <div class="stack-wrapper">
+                        <h3>Back Stack</h3>
+                        <div class="stack" id="back-stack-vis">
+                            <!-- Stack items go here -->
+                        </div>
+                    </div>
+                    
+                    <div class="stack-indicator">
+                        <div class="transfer-arrow arrow-left">←</div>
+                        <div class="transfer-arrow arrow-right">→</div>
+                    </div>
+
+                    <div class="stack-wrapper">
+                        <h3>Forward Stack</h3>
+                        <div class="stack" id="forward-stack-vis">
+                            <!-- Stack items go here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Panel: Application State / Current Page -->
+            <aside class="state-panel glass-panel">
+                <h2>Browser View</h2>
+                <div class="browser-window">
+                    <div class="browser-bar">
+                        <div class="dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="url-bar" id="browser-url-bar">about:blank</div>
+                    </div>
+                    <div class="browser-content" id="browser-content">
+                        <h3>Welcome</h3>
+                        <p>No active page.</p>
+                    </div>
+                </div>
+
+                <div class="log-container">
+                    <h3>Action Logs</h3>
+                    <ul id="action-logs"></ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- Notification System -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
