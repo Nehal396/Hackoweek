@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 15px;
+      width: 220px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    h2 { color: #38bdf8; margin-bottom: 10px; }
+
+    .temp {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 10px 0;
+      color: #facc15;
+    }
+
+    .condition {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Delhi</h2>
+    <div class="temp">32°C</div>
+    <div class="condition">Sunny ☀️</div>
+  </div>
+
+  <div class="card">
+    <h2>Mumbai</h2>
+    <div class="temp">29°C</div>
+    <div class="condition">Cloudy ☁️</div>
+  </div>
+
+  <div class="card">
+    <h2>Bangalore</h2>
+    <div class="temp">25°C</div>
+    <div class="condition">Rainy 🌧️</div>
+  </div>
+
+</div>
+
+</body>
+</html>
