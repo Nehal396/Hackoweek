@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Book Search | Premium Manager</title>
+    <meta name="description" content="A beautiful and fast contact book search application with alphabetical sorting and binary search implementations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Contact Book</h1>
+            <p>Manage, sort, and search your contacts seamlessly.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Left panel: Forms & Controls -->
+            <section class="controls-panel">
+                <div class="glass-card add-contact-card">
+                    <h2>Add Contact</h2>
+                    <form id="add-contact-form">
+                        <div class="input-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" required placeholder="John Doe">
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Phone *</label>
+                            <input type="text" id="phone" required placeholder="+1 234 567 8900">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email (Optional)</label>
+                            <input type="email" id="email" placeholder="john@example.com">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Contact</button>
+                    </form>
+                </div>
+
+                <div class="glass-card search-card">
+                    <h2>Search Contacts</h2>
+                    <div class="input-group">
+                        <label for="search-input">Search by Name</label>
+                        <input type="text" id="search-input" placeholder="Enter name to search...">
+                    </div>
+                    <div class="action-buttons">
+                        <button type="button" id="btn-search" class="btn btn-secondary">Binary Search</button>
+                        <button type="button" id="btn-sort" class="btn btn-tertiary">Sort Alphabetically</button>
+                    </div>
+                    <div id="search-result" class="search-result hidden">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right panel: Contact List -->
+            <section class="contacts-panel">
+                <div class="panel-header">
+                    <h2>All Contacts</h2>
+                    <span id="contact-count" class="badge">0</span>
+                </div>
+                
+                <div id="status-message" class="status-message hidden"></div>
+
+                <div id="contacts-list" class="contacts-list">
+                    <!-- Contact items will be injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals for Update functionality -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <h2>Edit Contact</h2>
+            <form id="edit-contact-form">
+                <input type="hidden" id="edit-id">
+                <div class="input-group">
+                    <label for="edit-name">Name *</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-phone">Phone *</label>
+                    <input type="text" id="edit-phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-email">Email (Optional)</label>
+                    <input type="email" id="edit-email">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel-edit" class="btn btn-ghost">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
