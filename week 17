@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATM Queue Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#020617,#0f172a,#1e293b);
+    color: white;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    padding: 20px;
+    font-size: 28px;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    letter-spacing: 2px;
+}
+
+/* GLASS CONTAINER */
+.container {
+    margin: 30px auto;
+    width: 80%;
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+}
+
+/* INPUT */
+input {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    width: 200px;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    margin: 8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add {
+    background: #38bdf8;
+}
+
+.serve {
+    background: #f59e0b;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* QUEUE */
+.queue-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.slot {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+/* ACTIVE */
+.active {
+    background: #38bdf8;
+    box-shadow: 0 0 15px #38bdf8;
+}
+
+/* STATUS */
+.status {
+    margin-top: 15px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>🏦 ATM Queue System</header>
+
+<div class="container">
+
+<input type="text" id="customer" placeholder="Enter Name">
+<br>
+
+<button class="add" onclick="enqueue()">Add Customer</button>
+<button class="serve" onclick="dequeue()">Serve Customer</button>
+
+<div class="queue-container" id="queue"></div>
+
+<div class="status" id="status">Queue Empty</div>
+
+</div>
+
+<script>
+const size = 5;
+let queue = new Array(size).fill(null);
+let front = -1, rear = -1;
+
+function render() {
+    let container = document.getElementById("queue");
+    container.innerHTML = "";
+
+    queue.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.className = "slot";
+        div.innerText = item ? item : "Empty";
+
+        if (index === front || index === rear) {
+            div.classList.add("active");
+        }
+
+        container.appendChild(div);
+    });
+
+    updateStatus();
+}
+
+function updateStatus() {
+    let status = document.getElementById("status");
+
+    if (front === -1) {
+        status.innerText = "Queue Empty";
+    } else if ((rear + 1) % size === front) {
+        status.innerText = "Queue Full";
+    } else {
+        status.innerText = "Queue Active";
+    }
+}
+
+function enqueue() {
+    let value = document.getElementById("customer").value.trim();
+    if (!value) return;
+
+    if ((rear + 1) % size === front) {
+        alert("Queue Full!");
+        return;
+    }
+
+    if (front === -1) {
+        front = rear = 0;
+    } else {
+        rear = (rear + 1) % size;
+    }
+
+    queue[rear] = value;
+    document.getElementById("customer").value = "";
+
+    render();
+}
+
+function dequeue() {
+    if (front === -1) {
+        alert("Queue Empty!");
+        return;
+    }
+
+    queue[front] = null;
+
+    if (front === rear) {
+        front = rear = -1;
+    } else {
+        front = (front + 1) % size;
+    }
+
+    render();
+}
+
+render();
+</script>
+
+</body>
+</html>
