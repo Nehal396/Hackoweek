@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RhythmFlow</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#020617,#0f172a);
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 20px;
+    font-size: 26px;
+}
+
+/* CONTAINER */
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* INPUT */
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* BUTTON */
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #38bdf8;
+}
+
+/* SONG LIST */
+.song {
+    background: #1e293b;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>🎧 RhythmFlow Playlist</header>
+
+<div class="container">
+
+<input type="text" id="song" placeholder="Enter song name">
+
+<br>
+
+<button onclick="addFront()">Add Song (Front)</button>
+<button onclick="deletePos()">Delete by Position</button>
+<button onclick="reverseList()">Shuffle Mode</button>
+
+<div id="playlist"></div>
+
+</div>
+
+<script>
+// NODE
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+let head = null;
+
+// ADD FRONT
+function addFront() {
+    let value = document.getElementById("song").value;
+    if (!value) return;
+
+    let newNode = new Node(value);
+
+    if (head != null) {
+        head.prev = newNode;
+        newNode.next = head;
+    }
+
+    head = newNode;
+    render();
+
+    document.getElementById("song").value = "";
+}
+
+// DELETE BY POSITION
+function deletePos() {
+    let pos = prompt("Enter position to delete:");
+    pos = parseInt(pos);
+
+    if (!head || pos < 1) return;
+
+    let temp = head;
+
+    if (pos === 1) {
+        head = head.next;
+        if (head) head.prev = null;
+        render();
+        return;
+    }
+
+    for (let i = 1; i < pos && temp; i++) {
+        temp = temp.next;
+    }
+
+    if (!temp) return;
+
+    if (temp.prev) temp.prev.next = temp.next;
+    if (temp.next) temp.next.prev = temp.prev;
+
+    render();
+}
+
+// REVERSE
+function reverseList() {
+    let temp = null;
+    let current = head;
+
+    while (current != null) {
+        temp = current.prev;
+        current.prev = current.next;
+        current.next = temp;
+        current = current.prev;
+    }
+
+    if (temp != null) {
+        head = temp.prev;
+    }
+
+    render();
+}
+
+// DISPLAY
+function render() {
+    let list = document.getElementById("playlist");
+    list.innerHTML = "";
+
+    let temp = head;
+
+    while (temp != null) {
+        list.innerHTML += `<div class="song">${temp.data}</div>`;
+        temp = temp.next;
+    }
+}
+</script>
+
+</body>
+</html>
