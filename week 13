@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScoreInsight</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#020617,#0f172a);
+    color: white;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    padding: 20px;
+    font-size: 28px;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+}
+
+/* INPUT */
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 150px;
+}
+
+/* BUTTON */
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background: #38bdf8;
+    cursor: pointer;
+}
+
+/* STATS */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.stat {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* LIST */
+.list {
+    margin-top: 20px;
+}
+
+/* CHART */
+.chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    height: 200px;
+    margin-top: 20px;
+}
+
+.bar {
+    width: 20px;
+    background: #38bdf8;
+}
+</style>
+</head>
+
+<body>
+
+<header>📊 ScoreInsight Dashboard</header>
+
+<div class="container">
+
+<input type="number" id="score" placeholder="Enter score">
+<button onclick="addScore()">Add</button>
+<button onclick="updateScore()">Update</button>
+
+<div class="stats">
+<div class="stat">Min: <span id="min">-</span></div>
+<div class="stat">Max: <span id="max">-</span></div>
+<div class="stat">Mode: <span id="mode">-</span></div>
+<div class="stat">Avg: <span id="avg">-</span></div>
+</div>
+
+<div class="list" id="list"></div>
+
+<div class="chart" id="chart"></div>
+
+</div>
+
+<script>
+let scores = [];
+
+// ADD
+function addScore() {
+    let value = parseInt(document.getElementById("score").value);
+    if (isNaN(value)) return;
+
+    scores.push(value);
+    render();
+}
+
+// UPDATE (replace last)
+function updateScore() {
+    let value = parseInt(document.getElementById("score").value);
+    if (isNaN(value) || scores.length === 0) return;
+
+    scores[scores.length - 1] = value;
+    render();
+}
+
+// CALCULATE
+function calculate() {
+    if (!scores.length) return;
+
+    let min = Math.min(...scores);
+    let max = Math.max(...scores);
+    let avg = (scores.reduce((a,b)=>a+b,0) / scores.length).toFixed(2);
+
+    // MODE
+    let freq = {};
+    let mode = scores[0], maxCount = 0;
+
+    scores.forEach(num => {
+        freq[num] = (freq[num] || 0) + 1;
+        if (freq[num] > maxCount) {
+            maxCount = freq[num];
+            mode = num;
+        }
+    });
+
+    document.getElementById("min").innerText = min;
+    document.getElementById("max").innerText = max;
+    document.getElementById("mode").innerText = mode;
+    document.getElementById("avg").innerText = avg;
+}
+
+// RENDER
+function render() {
+    let list = document.getElementById("list");
+    list.innerHTML = "Scores: " + scores.join(", ");
+
+    calculate();
+
+    let chart = document.getElementById("chart");
+    chart.innerHTML = "";
+
+    scores.forEach(score => {
+        let bar = document.createElement("div");
+        bar.className = "bar";
+        bar.style.height = score * 2 + "px";
+        chart.appendChild(bar);
+    });
+}
+</script>
+
+</body>
+</html>
