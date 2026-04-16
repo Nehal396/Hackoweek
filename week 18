@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Queue Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#020617,#0f172a);
+    color: white;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    padding: 20px;
+    font-size: 26px;
+    background: rgba(255,255,255,0.05);
+}
+
+/* CONTAINER */
+.container {
+    margin: 30px auto;
+    width: 80%;
+    max-width: 600px;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* INPUT */
+input, select {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #38bdf8;
+}
+
+/* LIST */
+.patient {
+    background: #1e293b;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+</head>
+
+<body>
+
+<header>🏥 Hospital Priority Queue</header>
+
+<div class="container">
+
+<input type="text" id="name" placeholder="Patient Name">
+<select id="priority">
+<option value="1">High (Emergency)</option>
+<option value="2">Medium</option>
+<option value="3">Low</option>
+</select>
+
+<br>
+
+<button onclick="addPatient()">Add Patient</button>
+<button onclick="servePatient()">Serve Patient</button>
+
+<div id="list"></div>
+
+</div>
+
+<script>
+let queue = [];
+
+// RENDER
+function render() {
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+
+    queue.forEach(p => {
+        list.innerHTML += `
+        <div class="patient">
+            <span>${p.name}</span>
+            <span>Priority: ${p.priority}</span>
+        </div>`;
+    });
+}
+
+// ADD (PRIORITY QUEUE)
+function addPatient() {
+    let name = document.getElementById("name").value;
+    let priority = document.getElementById("priority").value;
+
+    if (!name) return;
+
+    let patient = { name, priority };
+
+    queue.push(patient);
+
+    // SORT by priority (LOW number = HIGH priority)
+    queue.sort((a, b) => a.priority - b.priority);
+
+    document.getElementById("name").value = "";
+
+    render();
+}
+
+// SERVE
+function servePatient() {
+    if (!queue.length) {
+        alert("No patients!");
+        return;
+    }
+
+    let served = queue.shift();
+    alert("Serving: " + served.name);
+
+    render();
+}
+</script>
+
+</body>
+</html>
